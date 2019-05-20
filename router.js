@@ -3,19 +3,21 @@ const express = require("express");
 //add router for students - splits routes into separate modules
 const cartItems = express.Router();
 
+const items = require(`./cartData`);
 
-class CartAPI {
-    constructor() {
-        this.items = require(`./cartData`);
-    }
-}
 
-let api = new CartAPI();
+// class CartAPI {
+//     constructor() {
+//         this.items = require(`./cartData`);
+//     }
+// }
+
+// let api = new CartAPI();
 
 // respond with "Hello Class!" at URI: /students
 cartItems.get("/", (req, res) => {
     console.log("Here are items in cart...")
-    res.send(api);
+    res.send(items);
 });
 
 // accept POST request at URI: /students

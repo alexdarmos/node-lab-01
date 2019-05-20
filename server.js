@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 //converts params and body into usable JSON
 app.use(express.json());
-
+app.use(express.static("./public"));
 
 const cartItems = require("./router");
 app.use("/cart-items", cartItems);
