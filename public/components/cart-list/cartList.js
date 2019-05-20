@@ -2,11 +2,11 @@ function CartController(CartService) {
     const ctrl = this;
     ctrl.cartItems = [];
     ctrl.banner = '';
+    ctrl.isHovering = false;
 
     ctrl.cartList = () => {
         CartService.getCart()
         .then( (data) => {
-            // console.log(data);
 
             data.forEach(function(item)  {
                 let cartObj = {
@@ -29,8 +29,13 @@ function CartController(CartService) {
     ctrl.cartList();
 
     ctrl.getBanner = (image) => {
+        ctrl.isHovering = true;
         ctrl.banner = image;
+        console.log(ctrl.isHovering);
     }
+    console.log(ctrl.isHovering);
+
+
 
 
 }
@@ -42,7 +47,7 @@ angular.module("CartApp")
     <dynamic-banner background="$ctrl.banner"></dynamic-banner>
     <div class="container">
         <div class="cart">
-            <div class="cart-item" ng-repeat="item in $ctrl.cartItems" ng-mouseover="$ctrl.getBanner(item.image)">
+            <div class="cart-item" ng-repeat="item in $ctrl.cartItems" ng-mouseover="$ctrl.getBanner(item.image)" ng-mouseleave="$ctrl.isHovering = false;">
             
                 <div class="item-header ">{{item.product}}</div>
                 <div class="item-cost">Cost: \${{item.quantity * item.price}}</div>

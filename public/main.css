@@ -20,8 +20,8 @@ body {
 .cart {
     display:flex;
     flex-wrap: wrap;
-    width: 100vw;
-    justify-content: flex-start;
+    width: 100%;
+    justify-content: center;
 }
 
 .cart-item {
