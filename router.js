@@ -22,8 +22,8 @@ cartItems.get("/", (req, res) => {
 
 // accept POST request at URI: /students
 cartItems.post("/", (req, res) => {
-    console.log(req.body); 
-    res.send("Add item to cart...");
+    items.push(req.body);
+    res.send(items);
 });
 // accept PUT request at URI: /students
 cartItems.put("/:id", (req, res) => {
@@ -34,6 +34,9 @@ cartItems.put("/:id", (req, res) => {
 // accept DELETE request at URI: /students
 cartItems.delete("/:id", (req, res) => {
     console.log(req.params.id);
+        items.splice(req.params.id, 1);
+    res.send(items);
+
 });
 
 module.exports = cartItems;

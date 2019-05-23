@@ -12,6 +12,22 @@ function CartService($http, $q) {
                 console.log(error);
                 reject(error);
             })
+
+        })
+    }
+
+    service.pushCart = () => {
+        return $q(function(resolve, reject)  {
+            $http.push('/cart-items')
+            .then( (response) => {
+                // console.log(response.data);
+                resolve(response.data);
+            })
+            .catch( (error) => {
+                console.log(error);
+                reject(error);
+            })
+
         })
     }
 

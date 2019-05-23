@@ -26,6 +26,21 @@ function CartController(CartService) {
 
     }
 
+    ctrl.pushCartList = () => {
+        CartService.pushCart()
+        .then( (data) => {
+            let item = {
+                id: 6,
+                product: "apples",
+                price: 1.09,
+                quantity: 1,
+                image: "/images/syrup-banner.jpg"
+            }
+            data.push(item);
+        })
+
+    }
+
     ctrl.cartList();
 
     ctrl.getBanner = (image) => {
@@ -46,6 +61,7 @@ angular.module("CartApp")
     template: `
     <dynamic-banner background="$ctrl.banner"></dynamic-banner>
     <div class="container">
+    <!-- <button ng-click="$ctrl.pushCartList()">Add Item</button> -->
         <div class="cart">
             <div class="cart-item" ng-repeat="item in $ctrl.cartItems" ng-mouseover="$ctrl.getBanner(item.image)" ng-mouseleave="$ctrl.isHovering = false;">
             
